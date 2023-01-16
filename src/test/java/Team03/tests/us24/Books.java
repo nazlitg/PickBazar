@@ -3,7 +3,10 @@ package Team03.tests.us24;
 import Team03.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 public class Books {
     /*
@@ -27,6 +30,15 @@ public class Books {
 
         WebElement İmg1 = Driver.getDriver().findElement(By.xpath(" //img[@alt='The Children Story 2']"));
         İmg1.click();
+
+        List<WebElement> books=Driver.getDriver().findElements(By.xpath("//div[@class='w-full']"));
+
+        System.out.println(books.size());
+
+        WebElement addCard = Driver.getDriver().findElement(By.xpath(" //img[@alt='The Children Story 2']"));
+        İmg1.click();
+
+
 
 
 
