@@ -24,6 +24,6 @@ public class TopManufacturers {
         Thread.sleep(3000);
 
 
-        Driver.closeDriver();
+
     }
 }

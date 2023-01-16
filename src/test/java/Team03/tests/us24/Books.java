@@ -29,9 +29,10 @@ public class Books {
         İmg1.click();
 
 
-        Driver.closeDriver();
+
 
     }
+
 
 
 }
