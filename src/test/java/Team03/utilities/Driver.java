@@ -14,15 +14,19 @@ public class Driver {
     }
 
     public static WebDriver getDriver(){
-        String browser = ConfigReader.getProperty("browser");
+
         if(driver==null){
+            String browser = ConfigReader.getProperty("browser");
             switch (browser) {
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver();
+                    break;
+
                 case "firefox":
                     WebDriverManager.firefoxdriver().setup();
                     driver = new FirefoxDriver();
+                    break;
             }
             driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));

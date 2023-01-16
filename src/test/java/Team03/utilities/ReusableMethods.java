@@ -12,7 +12,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ReusableMethods {
+
     static Actions actions=new Actions(Driver.getDriver());
+
     public static void checkPage(String expected){
         Assert.assertEquals(expected,Driver.getDriver().getCurrentUrl());
     }
