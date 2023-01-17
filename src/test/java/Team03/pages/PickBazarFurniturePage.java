@@ -66,7 +66,7 @@ import java.util.List;
         public WebElement FavoriButton;
 
 
-        @FindBy()
+        @FindBy(id = "headlessui-menu-item-9")
         public WebElement WishList;
 
 
