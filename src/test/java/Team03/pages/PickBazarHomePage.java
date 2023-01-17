@@ -8,6 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 
 public class PickBazarHomePage {
 
+
+
     public PickBazarHomePage(){
         PageFactory.initElements(Driver.getDriver(), this);
     }
@@ -47,4 +49,5 @@ public class PickBazarHomePage {
 
     @FindBy(xpath = "//button[.='Logout']")
     public WebElement logout;
+
 }
