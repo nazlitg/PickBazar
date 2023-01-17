@@ -8,8 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 
 public class PickBazarHomePage {
 
-
-
     public PickBazarHomePage(){
         PageFactory.initElements(Driver.getDriver(), this);
     }
