@@ -30,11 +30,12 @@ import java.util.List;
         public WebElement FurnitureSearchBox;
 
 
-        @FindBy(xpath = "//button[@class='flex h-8 items-center rounded border border-border-200 bg-gray-100\n" +
-                "            // bg-opacity-90 py-1 px-3 text-sm font-semibold text-heading transition-colors duration-200 \n" +
-                "            // hover:border-accent-hover hover:bg-accent hover:text-light focus:border-accent-hover focus:bg-accent\n" +
-                "            // focus:text-light focus:outline-none md:h-10 md:py-1.5 md:px-4 md:text-base'])")
+        @FindBy(xpath = "(//div[@class='relative inline-block ltr:text-left rtl:text-right'])[1]")
         public WebElement FurnitureFilter;
+
+
+        @FindBy(xpath = "//div[@class='w-full h-20 flex items-center justify-center']")
+        public WebElement Categories;
 
 
         @FindBy(xpath = "//*[@class='rounded-md py-1'][1]")
@@ -51,10 +52,6 @@ import java.util.List;
 
         @FindBy(xpath = "//*[@class='rounded-md py-1'][4]")
         public WebElement TableCategories;
-
-
-        @FindBy(tagName = "ul")
-        public WebElement AssertCategories;
 
 
         @FindBy(xpath = "//div[@class='relative flex h-48 w-auto items-center justify-center sm:h-64']")
