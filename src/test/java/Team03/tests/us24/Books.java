@@ -35,6 +35,8 @@ public class Books {
 
         System.out.println(books.size());
 
+
+
         WebElement addCard = Driver.getDriver().findElement(By.xpath(" //img[@alt='The Children Story 2']"));
         İmg1.click();
 
