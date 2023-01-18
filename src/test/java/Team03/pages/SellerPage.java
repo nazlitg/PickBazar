@@ -470,46 +470,4 @@ public class SellerPage {
     @FindBy (xpath = "(//div[@class=' css-ackcql'])")//index al
     public WebElement c_order_costumer;
 
-    @FindBy (xpath = "(//button[.='Add'])")//index al
-    public WebElement c_order_adds;
-
-    @FindBy (xpath = "(//button[.='Add'])")//index al
-    public WebElement c_order_adds;
-
-    @FindBy (xpath = "(//button[.='Add'])")//index al
-    public WebElement c_order_adds;
-
-    @FindBy (xpath = "(//button[.='Add'])")//index al
-    public WebElement c_order_adds;
-
-    @FindBy (xpath = "(//button[.='Add'])")//index al
-    public WebElement c_order_adds;
-
-    @FindBy (xpath = "(//button[.='Add'])")//index al
-    public WebElement c_order_adds;
-
-    @FindBy (xpath = "(//button[.='Add'])")//index al
-    public WebElement c_order_adds;
-
-    @FindBy (xpath = "(//button[.='Add'])")//index al
-    public WebElement c_order_adds;
-
-    @FindBy (xpath = "(//button[.='Add'])")//index al
-    public WebElement c_order_adds;
-
-    @FindBy (xpath = "(//button[.='Add'])")//index al
-    public WebElement c_order_adds;
-
-    @FindBy (xpath = "(//button[.='Add'])")//index al
-    public WebElement c_order_adds;
-
-    @FindBy (xpath = "(//button[.='Add'])")//index al
-    public WebElement c_order_adds;
-
-    @FindBy (xpath = "(//button[.='Add'])")//index al
-    public WebElement c_order_adds;
-
-
-
-
 }
