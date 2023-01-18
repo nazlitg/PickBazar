@@ -147,7 +147,7 @@ public class ContactTestleri {
         //1    kullanıcı url ye gider
         Driver.getDriver().get(ConfigReader.getProperty("url"));
         ReusableMethods.linkKontrol("pickbazar");
-
+/////
         //2    kullanıcı contact kısmına tıklar
         pickBazarContactPage.contact.click();
         ReusableMethods.linkKontrol("contact");

@@ -3,12 +3,18 @@ package Team03.pages;
 import Team03.utilities.ConfigReader;
 import Team03.utilities.Driver;
 import Team03.utilities.ReusableMethods;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
+import javax.lang.model.element.Element;
+import java.time.Duration;
 import java.util.List;
 
 public class SellerPage {
@@ -19,6 +25,30 @@ public class SellerPage {
     public void goURL() {
         Driver.getDriver().get(ConfigReader.getProperty("url"));
         ReusableMethods.linkKontrol("pickbazar");
+    }
+    public void Login() throws InterruptedException {
+        Become_Seller.click();
+        Driver.getDriver().switchTo().window((String) Driver.getDriver().getWindowHandles().toArray()[1]);
+
+        //3-Kullanıcı Login linkine gider
+        Login_Seller. click();
+        Thread.sleep(2000);
+
+        //4-Kullanıcı e-mail ve password bilgilerini girer.
+        WaitUntil(seller_email);
+        seller_email.click();
+        seller_email.clear();
+        seller_email.sendKeys("admin@demo.com");
+        WaitUntil(seller_password);
+        seller_password.click();
+        seller_password.clear();
+        Thread.sleep(500);
+        ReusableMethods.dataSend(seller_password,"demodemo" + Keys.ENTER);
+    }
+
+    public void WaitUntil(WebElement element){
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
     @FindBy(xpath = "//a[.='Become a Seller']")
@@ -66,16 +96,22 @@ public class SellerPage {
     @FindBy(xpath = "//a[.='Create Shop']")
     public WebElement create_shop;
 
+
     @FindAll({
-            @FindBy(xpath = "//h4[.='Logo']//following::section[1]"),
-            @FindBy(xpath = "//section[@class='upload']//following::section"),
+            @FindBy(xpath = "(//input[@accept='image/*'])[1]"),
+            @FindBy(xpath = "(//input[@accept='image/*'])[2]"),
+    })
+    public List<WebElement> set_img;
+
+    @FindAll({
+
             @FindBy(id = "name"),
             @FindBy(id = "description"),
             @FindBy(xpath = "//input[@name='balance.payment_info.name']"),
             @FindBy(xpath = "//input[@name='balance.payment_info.bank']"),
             @FindBy(xpath = "//input[@name='balance.payment_info.account']"),
             @FindBy(xpath = "//input[@name='address.country']"),
-            @FindBy(xpath = "///input[@name='address.city']"),
+            @FindBy(xpath = "//input[@name='address.city']"),
             @FindBy(xpath = "//input[@name='address.zip']"),
             @FindBy(xpath = "//textarea[@name='address.street_address']"),
             @FindBy(xpath = "//input[@placeholder='Search location form here']"),
@@ -87,10 +123,13 @@ public class SellerPage {
     @FindBy(xpath = "//button[.='Add New Social Profile']")
     public WebElement Add_Social_Profil;
 
+    @FindBy(id = "balance.payment_info.email")
+    public WebElement add_holder_email;
+
     @FindBy(xpath = "//button[.='Save']")
     public WebElement Save_Profil;
 
-    @FindBy(xpath = "//span[.='Inactive']/child::span")
+    @FindBy(xpath = "(//a)[4]")
     public WebElement show_shops;
 
     //Dashboard --------------------------------------------------------
