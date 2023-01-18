@@ -1,17 +1,24 @@
 package Team03.pages;
 
+import Team03.utilities.ConfigReader;
 import Team03.utilities.Driver;
+import Team03.utilities.ReusableMethods;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.Test;
+import org.testng.Assert;
 
 import java.util.List;
 
 public class SellerPage {
     public SellerPage() {
         PageFactory.initElements(Driver.getDriver(), this);
+    }
+
+    public void goURL() {
+        Driver.getDriver().get(ConfigReader.getProperty("url"));
+        ReusableMethods.linkKontrol("pickbazar");
     }
 
     @FindBy(xpath = "//a[.='Become a Seller']")
@@ -27,10 +34,16 @@ public class SellerPage {
     public WebElement seller_password;
 
     @FindBy(xpath = "//button[.='Register']")
-    public WebElement Seller_register;
+    public WebElement seller_register;
 
-    @FindBy(xpath = "//button[.='Login']")
+    @FindBy(xpath = "//a[.='Register as Shop Owner']")
+    public WebElement register_so;
+
+    @FindBy(xpath = "//a[.='Login']")
     public WebElement Login_Seller;
+
+    @FindBy(xpath = "//label[.='']")
+    public WebElement password_show;
 
     @FindBy(tagName = "h3")
     public WebElement check_name;
@@ -381,10 +394,10 @@ public class SellerPage {
             @FindBy(xpath = "(//div[@class=' css-15aq8md'])[2]"),
             @FindBy(xpath = "(//div[@class=' css-15aq8md'])[3]"),
     })
-    public List<WebElement> groups_SelectLoctg_selectyout;
+    public List<WebElement> ctg_selectyout;
 
     @FindBy(xpath = "//button[.='Add Category']")
-    public WebElement getCtg_addCategories_last;
+    public WebElement Ctg_addCategories_last;
 
     //Tags---------------------------------------------------------------------------
 
@@ -461,55 +474,152 @@ public class SellerPage {
     @FindBy(xpath = "(//span[.='Checkout']")
     public WebElement c_order_checkout;
 
-    @FindBy (xpath = "//button[.='Update']")//index al
+    @FindBy(xpath = "//button[.='Update']")//index al
     public WebElement c_order_update;
 
-    @FindBy (xpath = "(//button[.='Add'])")//index al
+    @FindBy(xpath = "(//button[.='Add'])")//index al
     public WebElement c_order_adds;
 
-    @FindBy (xpath = "(//div[@class=' css-ackcql'])")//index al
+    @FindBy(xpath = "(//div[@class=' css-ackcql'])")
     public WebElement c_order_costumer;
 
-    @FindBy (xpath = "(//button[.='Add'])")//index al
-    public WebElement c_order_adds;
 
-    @FindBy (xpath = "(//button[.='Add'])")//index al
-    public WebElement c_order_adds;
+    @FindBy(xpath = ("//*[.='Check Availability']"))
+    public WebElement c_oreder_check;
 
-    @FindBy (xpath = "(//button[.='Add'])")//index al
-    public WebElement c_order_adds;
+    @FindBy(id = "(headlessui-radiogroup-option-11)")
+    public WebElement c_order_delivery;
 
-    @FindBy (xpath = "(//button[.='Add'])")//index al
-    public WebElement c_order_adds;
+    @FindBy(id = "(headlessui-radiogroup-option-34)")
+    public WebElement c_order_cash;
 
-    @FindBy (xpath = "(//button[.='Add'])")//index al
-    public WebElement c_order_adds;
+    @FindBy(id = "(headlessui-radiogroup-option-35)")
+    public WebElement c_order_cod;
 
-    @FindBy (xpath = "(//button[.='Add'])")//index al
-    public WebElement c_order_adds;
+    //costumer----------------------------------------------------------------
 
-    @FindBy (xpath = "(//button[.='Add'])")//index al
-    public WebElement c_order_adds;
+    @FindBy(id = "search")
+    public WebElement costumer_search;
 
-    @FindBy (xpath = "(//button[.='Add'])")//index al
-    public WebElement c_order_adds;
+    @FindBy(xpath = "(//span[.='+ Add Customer'])")
+    public WebElement costumer_add_costumer;
 
-    @FindBy (xpath = "(//button[.='Add'])")//index al
-    public WebElement c_order_adds;
+    @FindBy(xpath = "((//tr)[3]//td[4])")
+    public WebElement costumer_permission;
 
-    @FindBy (xpath = "(//button[.='Add'])")//index al
-    public WebElement c_order_adds;
+    @FindBy(xpath = "((//tr)[3]//td[5])")
+    public WebElement costumer_wallet;
 
-    @FindBy (xpath = "(//button[.='Add'])")//index al
-    public WebElement c_order_adds;
+    @FindBy(xpath = "((//tr)[3]//td[6])")
+    public WebElement costumer_status;
 
-    @FindBy (xpath = "(//button[.='Add'])")//index al
-    public WebElement c_order_adds;
+    @FindBy(xpath = "((//tr)[3]//td[7]//button[1])")
+    public WebElement costumer_act_per;
 
-    @FindBy (xpath = "(//button[.='Add'])")//index al
-    public WebElement c_order_adds;
+    @FindBy(xpath = "((//tr)[3]//td[7]//button[2])")
+    public WebElement costumer_act_wallet;
+
+    @FindBy(xpath = "((//tr)[3]//td[7]//button[3])")
+    public WebElement costumer_act_status;
+
+    @FindBy(xpath = "(//button[.='Cancel'])")
+    public WebElement costumer_cancel;
+
+    @FindBy(id = "(points)")
+    public WebElement costumer_wallet_edit;
+
+    @FindBy(xpath = "((//div[@class='w-1/2'])[2])")
+    public WebElement costumer_red_btn;
+
+    @FindAll({
+            @FindBy(id = "name"),
+            @FindBy(id = "email"),
+            @FindBy(id = "password"),
+    })
+    public List<WebElement> costumer_information;
+    //Coupons---------------------------------------------------------------------------------------------
+    @FindBy(id = "search")
+    public WebElement coupons_search;
+
+    @FindBy(xpath = "(//span[.='+ Add Coupon'])")
+    public WebElement couponsr_add_coupon;
+
+    @FindBy(xpath = "((//tr)[3]//td[8]//button)")
+    public WebElement coupons_cop;
+
+    @FindBy(xpath = "((//tr)[3]//td[8]//a)")
+    public WebElement coupons_edit;
+
+    @FindBy(xpath = "(//button[.='Cancel'])")
+    public WebElement coupons_cancel;
+
+    @FindBy(xpath = "(//button[.='Delete'])")
+    public WebElement coupons_delete;
 
 
+    @FindBy(xpath = "(//h4[.='Image']//following::section[1])")
+    public WebElement coupons_img;
 
+    @FindAll({
+            @FindBy(id = "code"),
+            @FindBy(id = "description"),
+            @FindBy(id = "minimum_cart_amount"),
+            @FindBy(xpath = "(//input[@type='text'])[2]"),
+            @FindBy(xpath = "(//input[@type='text'])[3]"),
+    })
+    public List<WebElement> coupons_information;
+
+    @FindAll({
+            @FindBy(xpath = "//input[@id='fixed']"),
+            @FindBy(xpath = "//input[@id='percentage']"),
+            @FindBy(xpath = "//input[@id='free_shipping']"),
+    })
+    public List<WebElement> coupons_type;
+
+    @FindBy(xpath = "(//button[.='Back'])")
+    public WebElement coupons_back;
+
+    @FindBy(xpath = "(//button[.='Update Coupon'])")
+    public WebElement coupons_update_c;
+
+    //Questions---------------------------------------------------------------------------------
+
+    @FindBy(xpath = "(//table//tr[2]")
+    public WebElement question_show;
+
+    @FindBy(xpath = "(//table//tr[2]//td[7]//button[1])")
+    public WebElement question_cop;
+
+    @FindBy(xpath = "(//table//tr[2]//td[7]//button[2]")
+    public WebElement question_edit;
+
+    @FindBy(xpath = "(//button[.='Cancel'])")
+    public WebElement question_cancel;
+
+    @FindBy(xpath = "(//button[.='Delete'])")
+    public WebElement question_delete;
+
+    @FindBy(id = "answer")
+    public WebElement costumer_delete;
+
+    @FindBy(xpath = "//button[.='Reply']")
+    public WebElement costumer_reply;
+
+    //Reviews
+
+    @FindBy(xpath = "//table//tr[2]")
+    public WebElement reviews_show;
+
+    @FindBy(xpath = "(//table//tr[2]//td[7]//button[1])")
+    public WebElement reviews_cop;
+
+    @FindBy(xpath = "//table//tr[2]//td[4]")
+    public WebElement reviews_Products;
+    //reviewsProduct:after
+    @FindBy(xpath = "//h1]")
+    public WebElement reviews_check_name;
+
+    @FindBy(xpath = "//table//tr[2]//td[2]")
+    public WebElement reviews_costumer;
 
 }
