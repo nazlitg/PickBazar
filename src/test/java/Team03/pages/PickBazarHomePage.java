@@ -27,25 +27,7 @@ public class PickBazarHomePage {
     @FindBy(xpath = "//img[@alt='user name']")
     public WebElement profileImg;
 
-    @FindBy(xpath = "//ul[@id='headlessui-menu-items-13']")
-    public WebElement userManual;
-
-    @FindBy(id = "headlessui-menu-item-14")
-    public WebElement points;
-
-    @FindBy(xpath = "//button[.='Profile']")
-    public WebElement profile;
-
-    @FindBy(xpath = "//button[.='My Orders']")
-    public WebElement myOrders;
-
-    @FindBy(xpath = "//button[.='My Wishlists']")
-    public WebElement myWishlist;
-
-    @FindBy(xpath = "//button[.='Checkout']")
-    public WebElement checkout;
-
-    @FindBy(xpath = "//button[.='Logout']")
-    public WebElement logout;
+    @FindBy(xpath = "//p[.='The credentials was wrong!']")
+    public WebElement invalidLogin;
 
 }
