@@ -5,9 +5,13 @@ import Team03.utilities.ConfigReader;
 import Team03.utilities.Driver;
 import Team03.utilities.TestBaseReports;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.time.Duration;
 
 public class TestCase08_01 extends TestBaseReports {
 //1-Kullanıcı URL gider.
@@ -25,13 +29,14 @@ public class TestCase08_01 extends TestBaseReports {
         Driver.getDriver().get(ConfigReader.getProperty("url"));
         Actions actions = new Actions(Driver.getDriver());
         PickBazarHomePage hp = new PickBazarHomePage();
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15));
 
         actions.moveToElement(hp.categoryDropDown).click().perform();
         actions.moveToElement(hp.groceryCategory).click().perform();
         Assert.assertTrue(hp.categoryTitle.getText().contains("Groceries"), "Grocery category is not displayed.");
 
         actions.moveToElement(hp.bakeryCategory).click().perform();
-        Thread.sleep(2000);
+        wait.until(ExpectedConditions.visibilityOf(hp.categoryTitle));
         Assert.assertTrue(hp.categoryTitle.getText().toLowerCase().contains("bakery"), "Bakery category is not displayed.");
 
         actions.moveToElement(hp.makeUpCategory).click().perform();
