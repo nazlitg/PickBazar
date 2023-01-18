@@ -1,58 +1,37 @@
 package Team03.pages;
 
 import Team03.utilities.Driver;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import javax.xml.xpath.XPath;
+import java.util.List;
 
     public class PickBazarFurniturePage {
 
-        public WebDriver Driver;
-
         public PickBazarFurniturePage(){
-            this.Driver= Driver;
-
-            PageFactory.initElements(Driver, this);
+            PageFactory.initElements(Driver.getDriver() , this);
         }
 
 
 ////////////////////////////////////////////////////////////////////////
 
-        @FindBy(xpath = "(//div[.='Grocery'])[1]//div[contains(@class,'relative')]")
+        @FindBy(id = "headlessui-menu-button-14")
         public WebElement Dropdown;
 
 
-        @FindBy(xpath = "(//div[@role='menuitem'])[6]")
+        @FindBy(id = "headlessui-menu-item-22")
         public WebElement Furniture;
 
 
-        @FindBy (xpath = "//div[@class='relative flex rounded md:rounded-lg h-11 md:h-12']")
+        @FindBy (id = "headlessui-menu-button-2")
         public WebElement FurnitureSearchBox;
 
 
         @FindBy(xpath = "(//div[@class='relative inline-block ltr:text-left rtl:text-right'])[1]")
         public WebElement FurnitureFilter;
-
-
-        @FindBy(xpath = "//div[@class='relative flex h-48 w-auto items-center justify-center sm:h-64']")
-        public WebElement AllProducts;
-
-
-        @FindBy(xpath = "//button[@class='mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-300 transition-colors']")
-        public WebElement FavoriButton;
-
-
-        @FindBy(xpath = "//div[@class='relative cursor-pointer overflow-hidden rounded-full border border-border-100 h-10 w-10']")
-        public WebElement Profilim;
-
-        @FindBy(xpath = "(//li[@role='menuitem'])[4]")
-        public WebElement WishList;
-
-
-        @FindBy(xpath = "(//div[@class='relative flex h-48 w-auto items-center justify-center sm:h-64'])[1]")
-        public WebElement IlkUrun;
 
 
         @FindBy(xpath = "//div[@class='w-full h-20 flex items-center justify-center']")
@@ -75,6 +54,19 @@ import org.openqa.selenium.support.PageFactory;
         public WebElement TableCategories;
 
 
+        @FindBy(xpath = "//div[@class='relative flex h-48 w-auto items-center justify-center sm:h-64']")
+        public WebElement AllProducts;
+
+
+        @FindBy(className = "mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center " +
+                "rounded-full border border-gray-300 transition-colors")
+        public WebElement FavoriButton;
+
+
+        @FindBy(id = "headlessui-menu-item-9")
+        public WebElement WishList;
+
+
         @FindBy(xpath = "//h3[@class='mb-2 truncate text-sm font-semibold text-heading']")
         public WebElement AllBeds;
 
@@ -88,50 +80,28 @@ import org.openqa.selenium.support.PageFactory;
 
 ///////////////////////////////////////////////////////////////////////////
 
-
-    @FindBy(xpath = "//span[@class='flex pb-0.5']")
-    public WebElement Sepet;
-
-
-    @FindBy(xpath = "mb-3 w-full lg:mb-0 lg:max-w-[400px]")
-    public WebElement AddtoShoppingCart;
+/*
+    @FindBy()
+    public WebElement
 
 
-    @FindBy(xpath = "//button[@title='Out Of Stock']")
-    public WebElement UrunArttır;
+    @FindBy()
+    public WebElement
 
 
-    @FindBy(xpath = "(//button[@class='cursor-pointer p-2 transition-colors duration-200 hover:bg-accent-hover focus:outline-none px-5'])[1]")
-    public WebElement UrunAzalt;
+    @FindBy()
+    public WebElement
 
 
-   @FindBy(xpath = "//span[@class='whitespace-nowrap text-base text-body ltr:lg:ml-7 rtl:lg:mr-7']")
-   public WebElement StokText;
+    @FindBy()
+    public WebElement
 
 
-   @FindBy(partialLinkText = "ltr:-mr-2 rtl:mr-3 rtl:-ml-2") // 2,sini alıcaz
-   public WebElement SepettenSil;
-
-
-   @FindBy(xpath = "//button[@title='Out Of Stock']")
-   public WebElement SepetteMiktarArttir;
-
-
-   @FindBy(xpath = "(//button[@class='cursor-pointer p-2 transition-colors duration-200 hover:bg-accent-hover focus:outline-none hover:!bg-gray-100'])[1]")
-   public WebElement SepetteMiktarAzalt;
-
-
-   @FindBy(xpath = "(//span[@class='font-bold text-heading ltr:ml-auto rtl:mr-auto'])[1]")
-   public WebElement Urun1Fiyat;
-
-
-   @FindBy(xpath = "(//span[@class='font-bold text-heading ltr:ml-auto rtl:mr-auto'])[2]")
-   public WebElement Urun2Fiyat;
-
-   @FindBy(xpath = "//span[@class='flex h-full shrink-0 items-center rounded-full bg-light px-5 text-accent']")
-   public WebElement ToplamFiyat;
-
-
+    @FindBy()
+    public WebElement
 
 
   }
+ */
+
+}
