@@ -26,7 +26,7 @@ public class us41_01 {
                 hp.loginButton.click();
 
                 // kullanıcı categories dropdown a tıklar
-                fp2.Dropdown.click();
+                hp.categoryDropDown.click();
 
                 // kullanıcı "Furniture" category sini seçer
                 fp2.FurnitureFilter.click();
