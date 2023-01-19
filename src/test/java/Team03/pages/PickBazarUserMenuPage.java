@@ -26,6 +26,24 @@ public class PickBazarUserMenuPage {
     @FindBy(xpath = "//a[.='Profile']")
     public WebElement profileSekmesi;
 
+    @FindBy(id = "name")
+    public WebElement profileNameBox;
+
+    @FindBy(xpath = "//textarea[@id='profile.bio']")
+    public WebElement profileBio;
+
+    @FindBy(xpath = "//button[contains(text(),'Save')]")
+    public WebElement profileSaveButton;
+
+    @FindBy(xpath = "(//button[.='Add'])[1]")
+    public WebElement phoneAddButton; //input[@type='tel']
+
+    @FindBy(xpath = "(//input[@type='tel'])[2]")
+    public WebElement addContactButton;
+
+    @FindBy(xpath = "(//button[.='Add'])[2]")
+    public WebElement adressAddButton;
+
     @FindBy(xpath = "//button[.='My Orders']")
     public WebElement myOrdersButton;
 

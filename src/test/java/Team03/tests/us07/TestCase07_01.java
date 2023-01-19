@@ -32,6 +32,7 @@ public class TestCase07_01 extends TestBaseReports {
         PickBazarUserMenuPage ump = new PickBazarUserMenuPage();
         ump.profileImg.click();
         ump.profileButton.click();
+        ump.profileSekmesi.click();
 
         //Assert.assertTrue(hp.profileImg.isDisplayed());
     }
