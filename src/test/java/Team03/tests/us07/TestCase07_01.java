@@ -43,7 +43,7 @@ public class TestCase07_01 extends TestBaseReports {
         actions.sendKeys("newName").build().perform();
         actions.click(ump.profileBio).sendKeys("new biography").build().perform();
         actions.click(ump.profileSaveButton).perform();
-        //Assert.assertTrue(ump.profileUpdatedSuccessfully.isDisplayed());
+        Assert.assertTrue(ump.profileUpdatedSuccessfully.isDisplayed());
 
         Driver.getDriver().switchTo().alert().accept();
         JavascriptExecutor jse = (JavascriptExecutor)Driver.getDriver();
@@ -52,7 +52,7 @@ public class TestCase07_01 extends TestBaseReports {
         actions.moveToElement(ump.phoneAddButton).click().perform();
         actions.click(ump.addContactBox).sendKeys("5555555555").perform();
         actions.click(ump.addContactButton).perform();
-        //Assert.assertTrue(ump.profileUpdatedSuccessfully.isDisplayed());
+        Assert.assertTrue(ump.profileUpdatedSuccessfully.isDisplayed());
 
 
         actions.moveToElement(ump.newAdressAddButton).click().perform();
