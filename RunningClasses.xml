@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Running Packages Suite">
+    <test name="Running multiple class">
+        <classes>
+            <class name="Team03.tests.us06.TestCase06_03"></class>
+            <class name="Team03.tests.us06.TestCase06_02"></class>
+            <class name="Team03.tests.us06.TestCase06_01"></class>
+            <class name="Team03.tests.us08.TestCase08_01"></class>
+            <class name="Team03.tests.us07.TestCase07_01"></class>
+        </classes>
+    </test>
+</suite>

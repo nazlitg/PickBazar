@@ -32,7 +32,7 @@ public class TestCase06_03 extends TestBaseReports {
         Actions actions = new Actions(Driver.getDriver());
         PickBazarUserMenuPage ump = new PickBazarUserMenuPage();
 
-        actions.moveToElement(ump.profileImg).click().perform();
+        ump.profileImg.click();
 
         Assert.assertTrue(ump.userMenu.isDisplayed());
 
