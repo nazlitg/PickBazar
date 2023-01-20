@@ -56,6 +56,8 @@ public class PickBazarContactPage {
     @FindBy(xpath = "(//button[@data-variant='normal'])[2]")
     public WebElement submit;
 
+    @FindBy(xpath = "//div[@role='alert']")
+    public WebElement gönderildi;
 
     @FindBy(xpath = "(//p[@class='mt-2 text-xs text-red-500'])[1]")
     public WebElement gecersiz;

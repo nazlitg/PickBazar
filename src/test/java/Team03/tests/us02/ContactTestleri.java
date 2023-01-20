@@ -5,14 +5,16 @@ import Team03.utilities.ConfigReader;
 import Team03.utilities.Driver;
 import Team03.utilities.ReusableMethods;
 
+import Team03.utilities.TestBaseReports;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.Set;
 
-public class ContactTestleri {
+public class ContactTestleri extends TestBaseReports {
     @Test
     public void concat() {
+        extentTest = extentReports.createTest("2. us 1. case");//repor için cagırdık
         PickBazarContactPage pickBazarContactPage = new PickBazarContactPage();
         //1    kullanıcı url ye gider
         Driver.getDriver().get(ConfigReader.getProperty("url"));
@@ -73,7 +75,8 @@ public class ContactTestleri {
 
 
     @Test
-    public void test02() {
+    public void test02() throws InterruptedException {
+        extentTest = extentReports.createTest("2. us 2. case");
         PickBazarContactPage pickBazarContactPage = new PickBazarContactPage();
         //1    kullanıcı url ye gider
         Driver.getDriver().get(ConfigReader.getProperty("url"));
@@ -91,10 +94,14 @@ public class ContactTestleri {
 
 //4    kullanıcı Submit bottuna tıklar
         pickBazarContactPage.submit.click();//PASS
+        ReusableMethods.waitUntilElementVisible(pickBazarContactPage.gönderildi);
+
+        Assert.assertTrue(pickBazarContactPage.gönderildi.isDisplayed());
     }
 
     @Test
     public void test03() {
+        extentTest = extentReports.createTest("2. us 3. case");
         PickBazarContactPage pickBazarContactPage = new PickBazarContactPage();
         //1    kullanıcı url ye gider
         Driver.getDriver().get(ConfigReader.getProperty("url"));
@@ -118,6 +125,7 @@ public class ContactTestleri {
 
     @Test
     public void test04() {
+        extentTest = extentReports.createTest("2. us 4. case");
         PickBazarContactPage pickBazarContactPage = new PickBazarContactPage();
         //1    kullanıcı url ye gider
         Driver.getDriver().get(ConfigReader.getProperty("url"));
@@ -139,27 +147,34 @@ public class ContactTestleri {
         //4    kullanıcı  Bir tanesi bos kalınca işlemin devam etmediği görümelidir
 
         ReusableMethods.gorunuyorMU(pickBazarContactPage.nameYok);
+
     }//PASS
 
     @Test
     public void test05() {
+        extentTest = extentReports.createTest("2. us 5. case");
         PickBazarContactPage pickBazarContactPage = new PickBazarContactPage();
         //1    kullanıcı url ye gider
         Driver.getDriver().get(ConfigReader.getProperty("url"));
         ReusableMethods.linkKontrol("pickbazar");
-/////
+
         //2    kullanıcı contact kısmına tıklar
         pickBazarContactPage.contact.click();
         ReusableMethods.linkKontrol("contact");
+        pickBazarContactPage.searchName.sendKeys("endiyy");
+        pickBazarContactPage.searchEmail.sendKeys(ConfigReader.getProperty("email"));
+        pickBazarContactPage.searchSubject.sendKeys("eeee");
+        pickBazarContactPage.searchDescription.sendKeys("11111111111111111111111111111111");
+
 
         //3    Description bölümün yazılan yazinin icerigi ile ilgil
         // bir sinirlandirma olmalidir(karakter boyutu, sayi-harf icermesi)
-        for (int i = 0; i < 100000000; i++) {
-            pickBazarContactPage.searchDescription.sendKeys("a3-23ds");
-        }
 
+        pickBazarContactPage.submit.click();
+        ReusableMethods.waitUntilElementVisible(pickBazarContactPage.gönderildi);
+Assert.assertFalse(pickBazarContactPage.gönderildi.isDisplayed());
 
-    }//BUG VAR.    Description HİÇ BİR SINIRLANDIRMA YOK
+    }//BUG VAR.    Description sayı
 }
 
 

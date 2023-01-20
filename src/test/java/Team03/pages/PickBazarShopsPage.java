@@ -16,6 +16,9 @@ public class PickBazarShopsPage {
     @FindBy(xpath = "//*[text()='Shops']")
     public WebElement shops;
 
+    @FindBy(xpath = "//*[text()='Furniture Shop']")
+    public WebElement furniture;
+
     @FindBy(xpath = "//*[@class='flex text-xs text-body']")
     public List<WebElement> alısVerisSecenekleri;
 
@@ -43,8 +46,6 @@ public class PickBazarShopsPage {
     @FindBy(xpath = "(//*[@class='cursor-pointer p-2 transition-colors duration-200 hover:bg-accent-hover focus:outline-none px-5'])[2]")
     public WebElement artıIsareti;
 
-    @FindBy(xpath = "//*[text()='Back']")
-    public WebElement back;
 
     @FindBy(xpath = "//*[text()='Checkout']")
     public WebElement checkout;
@@ -52,4 +53,11 @@ public class PickBazarShopsPage {
 
     @FindBy(xpath = "//button[text()='Check Availability']")
     public WebElement checkAvailability;
+
+    @FindBy(xpath = "//button[@data-variant='normal']")
+    public WebElement place;
+
+
+    @FindBy (xpath = "//*[text()='My Cards']")
+    public WebElement card;
 }
