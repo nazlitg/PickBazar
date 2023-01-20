@@ -31,7 +31,15 @@ public class ContactTestleri extends TestBaseReports {
         //4    kullanıcı visit this Site kısmına tıklar, Yeni  Sayfaya geçti mi kontrol eder
         String bazar = Driver.getDriver().getWindowHandle();
         pickBazarContactPage.visitThisSite.click();
-        Assert.assertFalse(Driver.getDriver().getCurrentUrl().contains("Bazar"));
+        String visitThisSite = "";
+        Set<String> listVisit = Driver.getDriver().getWindowHandles();
+        for (String each : listVisit) {
+            if (!each.equals(bazar)) {
+                visitThisSite = each;
+            }
+        }
+        Driver.getDriver().switchTo().window(visitThisSite);
+        Assert.assertFalse(Driver.getDriver().getCurrentUrl().contains("pickbazar"));
         Driver.getDriver().switchTo().window(bazar);
 
 
@@ -113,13 +121,15 @@ public class ContactTestleri extends TestBaseReports {
 
         //3    kullanıcı Questions, Comments, Or Concerns? Name email Subject ve Description doldurur
         pickBazarContactPage.searchName.sendKeys("endiyy");
+//4 kullanıcı gecersiz bir email girer
         pickBazarContactPage.searchEmail.sendKeys("jsad eu");
         pickBazarContactPage.searchSubject.sendKeys("eeee");
         pickBazarContactPage.searchDescription.sendKeys("asdnduy h");
 
-//4    kullanıcı Submit bottuna tıklar
+//5   kullanıcı Submit bottuna tıklar
         pickBazarContactPage.submit.click();
 
+        //6  kullanıcı gecersiz emaille işlem yapamadıgını görür
         ReusableMethods.includeText(pickBazarContactPage.gecersiz, "The provided email address format is not valid");
     }//PASS
 
@@ -135,7 +145,8 @@ public class ContactTestleri extends TestBaseReports {
         pickBazarContactPage.contact.click();
         ReusableMethods.linkKontrol("contact");
 
-        //3    kullanıcı Questions, Comments, Or Concerns? Name email Subject ve Description doldurur
+        //3    kullanıcı Questions, Comments, Or Concerns?email Subject ve Description doldurur
+        //name kısmını bos bırakır
 
         pickBazarContactPage.searchEmail.sendKeys(ConfigReader.getProperty("url"));
         pickBazarContactPage.searchSubject.sendKeys("eeee");
@@ -161,20 +172,20 @@ public class ContactTestleri extends TestBaseReports {
         //2    kullanıcı contact kısmına tıklar
         pickBazarContactPage.contact.click();
         ReusableMethods.linkKontrol("contact");
+
+        //3	kullanıcı Name email Subject ve Description lanalarını doldurur
         pickBazarContactPage.searchName.sendKeys("endiyy");
         pickBazarContactPage.searchEmail.sendKeys(ConfigReader.getProperty("email"));
         pickBazarContactPage.searchSubject.sendKeys("eeee");
         pickBazarContactPage.searchDescription.sendKeys("11111111111111111111111111111111");
-
-
-        //3    Description bölümün yazılan yazinin icerigi ile ilgil
-        // bir sinirlandirma olmalidir(karakter boyutu, sayi-harf icermesi)
-
         pickBazarContactPage.submit.click();
-        ReusableMethods.waitUntilElementVisible(pickBazarContactPage.gönderildi);
-Assert.assertFalse(pickBazarContactPage.gönderildi.isDisplayed());
 
-    }//BUG VAR.    Description sayı
+        //4    Description bölümün yazılan yazinin icerigi ile ilgil
+        // bir sinirlandirma olmalidir(karakter boyutu, sayi-harf icermemesi)
+        ReusableMethods.waitUntilElementVisible(pickBazarContactPage.gönderildi);
+        Assert.assertFalse(pickBazarContactPage.gönderildi.isDisplayed());
+
+    }//BUG VAR.    Description sayı için bir sınırlandırma yok
 }
 
 

@@ -4,14 +4,9 @@ import Team03.pages.PickBazarHomePage;
 import Team03.pages.PickBazarShopsPage;
 import Team03.utilities.ConfigReader;
 import Team03.utilities.Driver;
-import Team03.utilities.ReusableMethods;
 import Team03.utilities.TestBaseReports;
-import org.checkerframework.checker.units.qual.A;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.util.Set;
 
 public class ShopsTestleri extends TestBaseReports {
     @Test
