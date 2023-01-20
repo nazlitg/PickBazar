@@ -4,12 +4,14 @@ import Team03.pages.PickBazarHomePage;
 import Team03.pages.PickBazarShopsPage;
 import Team03.utilities.ConfigReader;
 import Team03.utilities.Driver;
+import Team03.utilities.TestBaseReports;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class ShopsTestleri {
+public class ShopsTestleri extends TestBaseReports {
     @Test
     public void test01() {
+        extentTest = extentReports.createTest("5. us 1. case");
         //1 kullanıcı url ye gider
         Driver.getDriver().get(ConfigReader.getProperty("url"));
 
@@ -37,6 +39,7 @@ public class ShopsTestleri {
 
 @Test
     public void test02(){
+    extentTest = extentReports.createTest("5. us 2. case");
     //1 kullanıcı url ye gider
     Driver.getDriver().get(ConfigReader.getProperty("url"));
 
@@ -57,8 +60,22 @@ public class ShopsTestleri {
     pickBazarHomePage.passwordBox.sendKeys(ConfigReader.getProperty("password"));
     pickBazarHomePage.loginButton.click();
 
+    pickBazarShopsPage.furniture.click();
+    pickBazarShopsPage.resimler.get(0).click();
+    pickBazarShopsPage.sepeteEkle.click();
+    pickBazarShopsPage.sepeteGit.click();
+    pickBazarShopsPage.checkout.click();
+    pickBazarShopsPage.checkAvailability.click();
 
-    pickBazarShopsPage.alısVerisSecenekleri.get(0).click();
+  pickBazarShopsPage.place.click();
+    Assert.assertTrue(pickBazarShopsPage.card.isDisplayed());
+    //faild  ödeme buttonu calısmıyor
+
+
+
+    //nxcvlşf
+
+ /*   pickBazarShopsPage.alısVerisSecenekleri.get(2).click();
     for (int i = 0; i < pickBazarShopsPage.resimler.size(); i++) {
        pickBazarShopsPage.resimler.get(i).click();
        pickBazarShopsPage.sepeteEkle.click();
@@ -81,7 +98,11 @@ public class ShopsTestleri {
         Driver.getDriver().navigate().back();
         Driver.getDriver().navigate().back();
 
-    }//BUG VAR ÜRÜNLERİN SEPETE EKLEME BUTTONU AKTİF DEGİL
+    }*/
+
+
+    //BUG VAR ÜRÜNLERİN SEPETE EKLEME BUTTONU AKTİF DEGİL
+
 
 }
 }

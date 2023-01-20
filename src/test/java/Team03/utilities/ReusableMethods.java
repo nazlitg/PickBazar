@@ -3,13 +3,17 @@ package Team03.utilities;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Date;
+import java.util.Set;
 
 public class ReusableMethods {
 
@@ -41,6 +45,7 @@ public class ReusableMethods {
         Assert.assertTrue(secilen.getText().contains(secim));
     }
 
+
     public static void linkKontrol(String ara){
         Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains(ara));
     }
@@ -68,4 +73,35 @@ public class ReusableMethods {
     public static String formatCurrentDate(String pattern){
         return new SimpleDateFormat(pattern).format(new Date());
     }
+
+
+
+
+
+    public static void switchToNewWindow(Set<String> windowHandles, String mainWindowHandle){
+        for (String w:windowHandles){
+            if(!w.equals(mainWindowHandle)){
+                Driver.getDriver().switchTo().window(w);
+            }
+        }
+
+    }
+
+    public static void waitUntilClickableAndClick(WebElement webElement) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.elementToBeClickable(webElement)).click();
+
+    }
+
+
+
+    public static void waitUntilElementVisible(WebElement webElement) {
+
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.visibilityOf(webElement));
+
+    }
+
+
+
 }

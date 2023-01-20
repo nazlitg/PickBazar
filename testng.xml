@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Users/Dell/IdeaProjects/ProjectTeam03">
+        <classes>
+            <class name="Team03.tests.us01.SellerPage_Tests">
+                <methods>
+                    <include name="task1"/>
+                    <include name="task2"/>
+                    <include name="task3"/>
+                    <include name="task4"/>
+                </methods>
+            </class>
+            <class name="Team03.tests.us02.ContactTestleri">
+                <methods>
+                    <include name="concat"/>
+                    <include name="test02"/>
+                    <include name="test03"/>
+                    <include name="test04"/>
+                    <include name="test05"/>
+                </methods>
+            </class>
+            <class name="Team03.tests.us03.FAQTestleri">
+                <methods>
+                    <include name="test01"/>
+                    <include name="test02"/>
+                </methods>
+            </class>
+            <class name="Team03.tests.us05.ShopsTestleri">
+                <methods>
+                    <include name="test01"/>
+                    <include name="test02"/>
+                </methods>
+            </class>
+            <class name="Team03.tests.us06.TestCase06_01">
+                <methods>
+                    <include name="login"/>
+                </methods>
+            </class>
+            <class name="Team03.tests.us06.TestCase06_02">
+                <methods>
+                    <include name="login"/>
+                </methods>
+            </class>
+            <class name="Team03.tests.us06.TestCase06_03">
+                <methods>
+                    <include name="login"/>
+                </methods>
+            </class>
+            <class name="Team03.tests.us07.TestCase07_01">
+                <methods>
+                    <include name="login"/>
+                </methods>
+            </class>
+            <class name="Team03.tests.us07.TestCase07_02">
+                <methods>
+                    <include name="login"/>
+                </methods>
+            </class>
+            <class name="Team03.tests.us07.TestCase07_03">
+                <methods>
+                    <include name="login"/>
+                </methods>
+            </class>
+            <class name="Team03.tests.us07.TestCase07_04">
+                <methods>
+                    <include name="login"/>
+                </methods>
+            </class>
+            <class name="Team03.tests.us07.TestCase07_05">
+                <methods>
+                    <include name="login"/>
+                </methods>
+            </class>
+            <class name="Team03.tests.us08.TestCase08_01">
+                <methods>
+                    <include name="categoryTest"/>
+                </methods>
+            </class>
+            <class name="Team03.tests.us14.case1">
+                <methods>
+                    <include name="searchTest"/>
+                </methods>
+            </class>
+            <class name="Team03.tests.us24.Books">
+                <methods>
+                    <include name="test01"/>
+                </methods>
+            </class>
+            <class name="Team03.tests.us25.TopAuthors">
+                <methods>
+                    <include name="test"/>
+                </methods>
+            </class>
+            <class name="Team03.tests.us26.TopManufacturers">
+                <methods>
+                    <include name="test"/>
+                </methods>
+            </class>
+            <class name="Team03.tests.us41.us41_02">
+                <methods>
+                    <include name="test03"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

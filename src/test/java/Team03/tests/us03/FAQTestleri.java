@@ -5,13 +5,15 @@ import Team03.pages.PickBazarFAQPage;
 import Team03.utilities.ConfigReader;
 import Team03.utilities.Driver;
 import Team03.utilities.ReusableMethods;
+import Team03.utilities.TestBaseReports;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class FAQTestleri {
+public class FAQTestleri extends TestBaseReports {
 
     @Test
     public void test01() {
+        extentTest = extentReports.createTest("3. us 1. case");
         //1 kullanıcı url ye gider
         Driver.getDriver().get(ConfigReader.getProperty("url"));
         ReusableMethods.linkKontrol("pickbazar");
@@ -36,6 +38,7 @@ public class FAQTestleri {
 
     @Test
     public void test02() {
+        extentTest = extentReports.createTest("3. us 2. case");
         //1 kullanıcı url ye gider
         Driver.getDriver().get(ConfigReader.getProperty("url"));
         ReusableMethods.linkKontrol("pickbazar");
