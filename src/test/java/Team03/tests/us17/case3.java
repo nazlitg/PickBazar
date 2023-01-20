@@ -1,14 +1,16 @@
-package Team03.tests.us16;
+package Team03.tests.us17;
 
 import Team03.pages.Bags;
 import Team03.utilities.ConfigReader;
 import Team03.utilities.Driver;
 import org.testng.annotations.Test;
 
-public class case1 {
+public class case3 {
 
     @Test
-    public void addProduct() {
+    public void test() {
+
+
         Bags bg = new Bags(Driver.getDriver());
         //Kullanıcı url e gider
         Driver.getDriver().get(ConfigReader.getProperty("url"));
@@ -16,10 +18,12 @@ public class case1 {
         bg.Login();
         //Kullanıcı bags kategorisini açar
         bg.SelectBags();
-        //Kullanıcı istediği ürünü seçer
-        //Açılan ürün sayfasında arttırma azaltma yapabilir
-        bg.sayfadaArtAzlt();
-
+        //Kullanıcı isttediği ürünü seçer
+        //Sepete gider
+        //Sepette arttırır ve azaltır
+        //Sepetten ürünü çıkartır
+        //Sepetin boş olduğunu görüntüler
+        bg.sepetteArtAzltCikar();
 
     }
 }
