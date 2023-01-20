@@ -3,21 +3,27 @@ package Team03.pages;
 import Team03.utilities.ConfigReader;
 import Team03.utilities.Driver;
 import Team03.utilities.ReusableMethods;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 
-import javax.lang.model.element.Element;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SellerPage {
+    Actions actions = new Actions(Driver.getDriver());
+
     public SellerPage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
@@ -26,13 +32,14 @@ public class SellerPage {
         Driver.getDriver().get(ConfigReader.getProperty("url"));
         ReusableMethods.linkKontrol("pickbazar");
     }
+
     public void Login() throws InterruptedException {
         Become_Seller.click();
         Driver.getDriver().switchTo().window((String) Driver.getDriver().getWindowHandles().toArray()[1]);
 
         //3-Kullanıcı Login linkine gider
-        Login_Seller. click();
-        Thread.sleep(2000);
+        Login_Seller.click();
+        Thread.sleep(1000);
 
         //4-Kullanıcı e-mail ve password bilgilerini girer.
         WaitUntil(seller_email);
@@ -42,13 +49,132 @@ public class SellerPage {
         WaitUntil(seller_password);
         seller_password.click();
         seller_password.clear();
-        Thread.sleep(500);
-        ReusableMethods.dataSend(seller_password,"demodemo" + Keys.ENTER);
+        Thread.sleep(1000);
+        ReusableMethods.dataSend(seller_password, "demodemo" + Keys.ENTER);
     }
 
-    public void WaitUntil(WebElement element){
+    public void Login2() throws InterruptedException {
+        join.click();
+        //Driver.getDriver().switchTo().window((String) Driver.getDriver().getWindowHandles().toArray()[1]);
+        WaitUntil(loginButton2);
+        //3-Kullanıcı Login linkine gider
+        loginButton2.click();
+
+    }
+
+    @FindBy(xpath = "//button[.='Join']")
+    public WebElement join;
+
+    @FindBy(xpath = "//button[.='Login']")
+    public WebElement loginButton2;
+
+    @FindBy(xpath = "//a[.='Offers']")
+    public WebElement offer_buton;
+
+    @FindBy(xpath = "//div[@class='coupon-card'][1]")
+    public WebElement coupon_card_1;
+
+    @FindBy(xpath = "(//div[@class='coupon-card'][1])//div[2]//button")
+    public WebElement coupon_card_1_copy;
+
+    @FindBy(xpath = "(//div[@class='coupon-card'][1])//div[2]//span")
+    public WebElement coupon_card_use;
+
+    @FindBy(xpath = "(//div[@class='coupon-card'][1])//div[2]//div")
+    public WebElement coupon_card_1_copied;
+
+    @FindBy(xpath = "(//span[.='Add'])[5]//ancestor::button")
+    public WebElement urun_add;
+
+    @FindBy(xpath = "//span[contains(text(),'Check')]")
+    public WebElement checkout;
+
+    @FindBy(xpath = "//button[contains(text(),'Check')]")
+    public WebElement checkout_avaible;
+
+    @FindBy(xpath = "//p[@role='button']")
+    public WebElement do_you_have_coupon;
+
+    @FindBy(xpath = "//span[contains(text(),'Item')]")
+    public WebElement sepet;
+
+    @FindBy(xpath = "//span[contains(text(),'Cas')]")
+    public WebElement cod;
+
+    @FindBy(id = "code")
+    public WebElement code;
+
+    @FindBy(xpath = "//button[contains(text(),'Apply')]")
+    public WebElement apply;
+
+    @FindBy(xpath = "(//p[contains(text(),'Dis')]//following::span)[2]")
+    public WebElement esc;
+
+    @FindBy(xpath = "(//p[contains(text(),'Dis')]//following::span)[3]")
+    public WebElement is_visible;
+
+
+    public List coupon_kayit() {
+        List<String> card = new ArrayList<>();
+        for (int i = 1; i < 10; i++) {
+           card = new ArrayList<String>();
+           card.add(((Driver.getDriver().findElement(By.xpath("(//div[@class='coupon-card'][1])//div[2]//span"))).getText().toString()));
+           card.add(((Driver.getDriver().findElement(By.xpath("(//div[@class='coupon-card'][2])//div[2]//span"))).getText().toString()));
+           card.add(((Driver.getDriver().findElement(By.xpath("(//div[@class='coupon-card'][3])//div[2]//span"))).getText().toString()));
+           card.add(((Driver.getDriver().findElement(By.xpath("(//div[@class='coupon-card'][4])//div[2]//span"))).getText().toString()));
+           card.add(((Driver.getDriver().findElement(By.xpath("(//div[@class='coupon-card'][5])//div[2]//span"))).getText().toString()));
+           card.add(((Driver.getDriver().findElement(By.xpath("(//div[@class='coupon-card'][6])//div[2]//span"))).getText().toString()));
+           card.add(((Driver.getDriver().findElement(By.xpath("(//div[@class='coupon-card'][7])//div[2]//span"))).getText().toString()));
+           card.add(((Driver.getDriver().findElement(By.xpath("(//div[@class='coupon-card'][8])//div[2]//span"))).getText().toString()));
+           card.add(((Driver.getDriver().findElement(By.xpath("(//div[@class='coupon-card'][9])//div[2]//span"))).getText().toString()));
+           card.add(((Driver.getDriver().findElement(By.xpath("(//div[@class='coupon-card'][10])//div[2]//span"))).getText().toString()));
+
+        }
+        return card;
+    }
+    @Test
+    public void coupon_try(ArrayList a)  {
+
+
+            actions.moveToElement(checkout_avaible).click().perform();
+            do_you_have_coupon.click();
+            actions.moveToElement(code).click().sendKeys(a.get(0).toString()).perform();
+            actions.moveToElement(apply).click().perform();
+            Assert.assertTrue(is_visible.isDisplayed());
+            actions.moveToElement(esc).click().perform();
+
+
+        }
+
+
+
+
+    public void coupuncard() {
+        for (int i = 1; i < 10; i++) {
+            WebElement a = Driver.getDriver().findElement(By.xpath("(//div[@class='coupon-card'][" + i + "])//div[2]//button"));
+            actions
+                    .moveToElement(a)
+                    .click()
+                    .perform();
+            Assert.assertTrue(Driver.getDriver().findElement(By.xpath("(//div[@class='coupon-card'][" + i + "])//div[2]//div")).isDisplayed());
+        }
+
+    }
+
+
+    public void WaitUntil(WebElement element) {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(20));
         wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+    public void WaitClicable(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+
+    public void SelectIndex(WebElement element) {
+        Select select = new Select(element);
+        select.selectByIndex(0);
     }
 
     @FindBy(xpath = "//a[.='Become a Seller']")
@@ -143,11 +269,23 @@ public class SellerPage {
     @FindBy(xpath = "//span[.='Products']")
     public WebElement products;
 
+    @FindBy(xpath = "//span[.='Shippings']")
+    public WebElement shipping;
+
     @FindBy(xpath = "//span[.='Manufacturers/Publications']")
-    public WebElement authors;
+    public WebElement man_au;
+
+    @FindBy(xpath = "//span[.='Users']")
+    public WebElement user;
+
+    @FindBy(xpath = "//span[.='Taxes']")
+    public WebElement taxes;
 
     @FindBy(xpath = "//span[.='Orders']")
     public WebElement orders;
+
+    @FindBy(xpath = "//span[.='Coupons']")
+    public WebElement coupons;
 
     @FindBy(xpath = "//span[.='Refunds']")
     public WebElement refunds;
@@ -166,6 +304,21 @@ public class SellerPage {
 
     @FindBy(xpath = "//a[.='Visit Shop']")
     public WebElement visit_shop;
+
+    @FindBy(xpath = "//a[.='Groups']")
+    public WebElement groups;
+
+    @FindBy(xpath = "//a[.='Categories']")
+    public WebElement categories;
+
+    @FindBy(xpath = "//a[.='Tags']")
+    public WebElement tag;
+
+    @FindBy(xpath = "//a[.='Authors']")
+    public WebElement authors;
+
+    @FindBy(xpath = "//a[.='Create Order']")
+    public WebElement create_order;
 
     //Attribute---------------------------------------------------------------------------
 
@@ -204,26 +357,59 @@ public class SellerPage {
 
     //Products---------------------------------------------------------------
 
+
     @FindBy(id = "search")
     public WebElement products_search;
 
     @FindBy(xpath = "//span[.='+ Add Product']")
     public WebElement add_product;
 
-    @FindBy(id = "path[data-name='Path 2462']")
+    @FindBy(xpath = "((//main//div)[3]//button)[2]")
     public WebElement product_filter;
 
-    @FindBy(id = "react-select-11-placeholder")
+    @FindBy(xpath = "(//table//tr)[3]//td[2]")
+    public WebElement product_name;
+
+    @FindBy(xpath = "//table//tr[2]//td[2]")
+    public WebElement product_name2;
+
+    @FindBy(xpath = "(//table//tr[2]//td[3]")
+    public WebElement product_groups_name;
+
+    @FindBy(xpath = "(//div[@class=' css-15aq8md'])[1]")
+    public WebElement product_groups_check;
+
+
+    @FindBy(xpath = "(//*[@class= ' css-15aq8md'])[1]")
     public WebElement product_filter_group;
 
-    @FindBy(id = "#react-select-12-placeholder")
+    @FindBy(xpath = "//div[@class=' css-b62m3t-container']")
+    public WebElement product_filter_text;
+
+    @FindBy(xpath = "(//tr)[3]//td[3]")
+    public WebElement product_filter_text_check;
+
+    @FindBy(xpath = "(//*[@class= ' css-15aq8md'])[2]")
     public WebElement product_filter_category;
+
+    @FindBy(xpath = "(//tr)[3]//td[9]//button")
+    public WebElement product_cop;
+
+    @FindBy(xpath = "(//tr)[3]//td[9]//a")
+    public WebElement product_edit;
+
+    public void scfrom() {
+        actions
+                .sendKeys(Keys.ENTER)
+                .perform();
+    }
 
     //!!!!! ------- Üç nokta locate alinmıyor----------
 
     @FindAll({
-            @FindBy(xpath = "//h4[.='Featured Image']//following::section[1]"),
-            @FindBy(xpath = "//section[@class='upload']//following::section"),
+            @FindBy(xpath = "(//input[@type='file'])[3]"),
+            @FindBy(xpath = "(//input[@type='file'])[2]"),
+            @FindBy(xpath = "(//input[@type='file'])[1]"),
 
     })
     public List<WebElement> product_information_img;
@@ -240,11 +426,10 @@ public class SellerPage {
     public List<WebElement> product_information_select;
     @FindAll({
             @FindBy(id = "name"),
-            @FindBy(id = "slug"),
             @FindBy(id = "unit"),
             @FindBy(id = "description"),
             @FindBy(id = "price"),
-            @FindBy(id = "sale_price"),
+
             @FindBy(id = "quantity"),
             @FindBy(id = "sku"),
             @FindBy(id = "width"),
@@ -253,18 +438,33 @@ public class SellerPage {
     })
     public List<WebElement> product_information;
 
+    @FindBy(id = "sale_price")
+    public WebElement sale_price;
+
     @FindAll({
-            @FindBy(id = "is_digital"),
-            @FindBy(id = "is_external"),
+
             @FindBy(xpath = "//label[@for='published']"),
             @FindBy(xpath = "//label[@for='draft']"),
+            @FindBy(id = "is_digital"),
+            @FindBy(id = "is_external"),
 
     })
     public List<WebElement> product_information_check;
 
 
-    @FindBy(xpath = "//button[.='Add Produt']")
+    @FindBy(xpath = "//button[.='Add Product']")
     public WebElement Add_product;
+
+    @FindBy(xpath = "//button[.='Update Product']")
+    public WebElement edit_product;
+    @FindBy(xpath = "(//div[.='Successfully updated!'])[2]")
+    public WebElement product_success;
+
+    @FindBy(xpath = "(//div[.='Successfully deleted!'])[4]")
+    public WebElement product_delete;
+
+    @FindBy(xpath = "(//button[.='Delete'])")
+    public WebElement product_delete_red;
 
     //Authors-------------------------------------------------------------
 
@@ -278,8 +478,8 @@ public class SellerPage {
     public WebElement Author_add;
 
     @FindAll({
-            @FindBy(xpath = "//h4[.='Image']//following::section[1]"),
-            @FindBy(xpath = "//section[@class='upload']//following::section"),
+            @FindBy(xpath = "(//input[@accept='image/*'])[1]"),
+            @FindBy(xpath = "(//input[@accept='image/*'])[2]"),
 
     })
     public List<WebElement> author_img;
@@ -289,6 +489,7 @@ public class SellerPage {
             @FindBy(id = "languages"),
             @FindBy(id = "bio"),
             @FindBy(id = "quote"),
+            @FindBy(xpath = "//input[@name='socials.0.url']"),
 
     })
     public List<WebElement> author_information;
@@ -303,17 +504,39 @@ public class SellerPage {
     @FindBy(xpath = "//button[.='Add New Social Profile']")
     public WebElement author_add_social;
 
-    @FindBy(xpath = " css-b62m3t-container")
+    @FindBy(xpath = " //div[@class=' css-ackcql']")
     public WebElement author_select_platform;
 
-    @FindBy(xpath = "//input[@name='socials.0.url']")
-    public WebElement author_social_link;
 
     @FindBy(xpath = "(//button[@type='button'])[2]")
     public WebElement author_remove;
 
     @FindBy(xpath = "//button[.='Add Author']")
     public WebElement author_add_last;
+
+    @FindBy(xpath = "//button[.='Update Author']")
+    public WebElement author_update_last;
+
+    @FindBy(xpath = "(//div[.='Successfully created!'])[2]")
+    public WebElement author_success;
+
+    @FindBy(xpath = "(//tr)[3]//td[6]//a")
+    public WebElement author_edit;
+
+    @FindBy(xpath = "(//tr)[3]//td[6]//button")
+    public WebElement author_cop;
+    @FindBy(xpath = "(//div[.='Successfully updated!'])[2]")
+    public WebElement author_updated;
+
+    @FindBy(xpath = "(//button[.='Delete'])")
+    public WebElement author_delete;
+
+    @FindBy(xpath = "(//tr)[3]//td[5]//button")
+    public WebElement author_aproval_btn;
+
+    @FindBy(xpath = "(//div[.='Successfully updated!'])[2]")
+    public WebElement author_aproval_chck;
+
 
     //Manufacturers/Publications-------------------------------------------------------------
 
@@ -322,32 +545,68 @@ public class SellerPage {
 
     @FindBy(xpath = "//span[.='+ Add Manufacturer/Publication']")
     public WebElement m_add_mp;
+    @FindBy(xpath = "//button[.='Add Manufacturer/Publication']")
+    public WebElement m_add_mp_last;
+
+    @FindBy(xpath = "//button[.='Update Manufacturer/Publication']")
+    public WebElement m_add_mp_update;
+
+
+    @FindBy(xpath = "//input[@accept='image/*']")
+    public WebElement groups_img;
 
     @FindAll({
-            @FindBy(xpath = "//h4[.='Logo']//following::section[1]"),
-            @FindBy(xpath = "//section[@class='upload']//following::section"),
+            @FindBy(xpath = "(//input[@accept='image/*'])[1]"),
+            @FindBy(xpath = "(//input[@accept='image/*'])[2]"),
 
     })
     public List<WebElement> m_img;
 
     @FindAll({
+            @FindBy(xpath = "//div[@class=' css-15aq8md']"),
+            @FindBy(xpath = "(//div[@class=' css-1n58n78'])[2]"),
+
+    })
+    public List<WebElement> m_select_group;
+
+    @FindAll({
             @FindBy(id = "name"),
             @FindBy(id = "website"),
             @FindBy(id = "website"),
+            @FindBy(xpath = "(//div[@class=' css-1n58n78'])[2]"),
     })
     public List<WebElement> m_information;
 
-    @FindBy(xpath = "//div[@class=' css-15aq8md']")
-    public WebElement m_select_group;
 
     @FindBy(xpath = "//button[.='Add New Social Profile']")
     public WebElement m_social_add;
 
-    @FindBy(xpath = "(//div[@class=' css-1n58n78'])[2]")
-    public WebElement m_select_social;
 
     @FindBy(xpath = "//input[@name='socials.0.url']")
     public WebElement m_socialUrl;
+
+    @FindBy(xpath = "(//div[.='Successfully created!'])[2]")
+    public WebElement m_success;
+
+    @FindBy(xpath = "(//div[.='Successfully updated!'])[2]")
+    public WebElement m_updated;
+
+    @FindBy(xpath = "(//button[.='Delete'])")
+    public WebElement m_delete;
+
+
+    @FindBy(xpath = "(//tr)[3]//td[6]//button")
+    public WebElement m_cop;
+
+    @FindBy(xpath = "(//tr)[3]//td[6]//a")
+    public WebElement m_edit;
+
+    @FindBy(xpath = "(//tr)[3]//td[5]//button")
+    public WebElement m_aproval_btn;
+
+    @FindBy(xpath = "(//div[.='Successfully updated!'])[2]")
+    public WebElement m_aproval_chck;
+
 
     //My shops---------------------
 
@@ -364,6 +623,16 @@ public class SellerPage {
 
     @FindBy(xpath = "//div[@class='rc-table-container']")
     public WebElement groups_table;
+
+    @FindBy(xpath = "(//tr)[3]//td[4]//button")
+    public WebElement groups_cop;
+
+    @FindBy(xpath = "(//tr)[3]//td[4]//a")
+    public WebElement groups_edit;
+
+    @FindBy(xpath = "(//button[.='Delete'])")
+    public WebElement groups_delete;
+
 
     @FindAll({
             @FindBy(xpath = "//label[@for='classic']"),
@@ -387,26 +656,40 @@ public class SellerPage {
     @FindBy(id = "name")
     public WebElement groups_name;
 
-    @FindBy(xpath = "(//div[@class=' css-1n58n78'])[1]")
-    public WebElement groups_selectIcon;
-
-    @FindBy(xpath = "//h4[.='Promotional Sliders']//following::section[1]")
-    public WebElement groups_img;
-
-    @FindBy(xpath = "//button[.='Add Banner']")
-    public WebElement groups_addBanner;
-
     @FindBy(xpath = "//label[@for='banners.0.title']")
     public WebElement groups_title;
 
     @FindBy(xpath = "//textarea[@id='banners.0.description']")
     public WebElement groups_description;
 
+    @FindAll({
+            @FindBy(id = "name"),
+            @FindBy(xpath = "//label[@for='banners.0.title']"),
+            @FindBy(xpath = "//textarea[@id='banners.0.description']"),
+    })
+    public List<WebElement> groups_information;
+
+
+    @FindBy(xpath = "(//div[@class=' css-1n58n78'])[1]")
+    public WebElement groups_selectIcon;
+
+    @FindBy(xpath = "//button[.='Add Banner']")
+    public WebElement groups_addBanner;
+
     @FindBy(xpath = "//button[.='Remove']")
     public WebElement groups_remove;
 
     @FindBy(xpath = "//button[.='Add Group']")
     public WebElement groups_addGroup_last;
+
+    @FindBy(xpath = "//button[.='Update Group']")
+    public WebElement groups_update;
+
+    @FindBy(xpath = "(//div[.='Successfully updated!'])[2]")
+    public WebElement groups_updated;
+
+    @FindBy(xpath = "(//div[.='Successfully created!'])[2]")
+    public WebElement groups_success;
 
     //Categories-------------------------------
 
@@ -419,7 +702,7 @@ public class SellerPage {
     @FindBy(xpath = "//div[.='Filter by Group']")
     public WebElement ctg_filter;
 
-    @FindBy(xpath = "//h4[.='Image']//following::section[1]")
+    @FindBy(xpath = "//input[@accept='image/*']")
     public WebElement ctg_img;
 
     @FindAll({
@@ -438,6 +721,25 @@ public class SellerPage {
     @FindBy(xpath = "//button[.='Add Category']")
     public WebElement Ctg_addCategories_last;
 
+    @FindBy(xpath = "//button[.='Update Category']")
+    public WebElement ctg_update;
+
+    @FindBy(xpath = "(//div[.='Successfully created!'])[2]")
+    public WebElement ctg_success;
+
+    @FindBy(xpath = "(//tr)[3]//td[9]//button")
+    public WebElement ctg_cop;
+
+    @FindBy(xpath = "(//tr)[3]//td[9]//a")
+    public WebElement ctg_edit;
+
+    @FindBy(xpath = "(//div[.='Successfully updated!'])[4]")
+    public WebElement ctg_updated;
+
+    @FindBy(xpath = "(//div[.='Successfully deleted!'])[2]")
+    public WebElement ctg_deleted;
+
+
     //Tags---------------------------------------------------------------------------
 
     @FindBy(id = "search")
@@ -446,8 +748,14 @@ public class SellerPage {
     @FindBy(xpath = "//span[.='+ Add Tag']")
     public WebElement tag_addCategories;
 
-    @FindBy(xpath = "(//button[@title='Delete'])[1]'] ")
+    @FindBy(xpath = "//button[.='Delete']")
     public WebElement tag_delete;
+
+    @FindBy(xpath = "(//tr)[3]//td[6]//button")
+    public WebElement tag_cop;
+
+    @FindBy(xpath = "(//div[.='Successfully deleted!'])[2]")
+    public WebElement tag_deleted;
 
     @FindBy(xpath = "(//button[@title='Delete'])[1]/following-sibling::a")
     public WebElement tag_edit;
@@ -465,8 +773,20 @@ public class SellerPage {
     })
     public List<WebElement> tag_select;
 
-    @FindBy(xpath = "(//div[.='Add Tag'])[2]")
+    @FindBy(xpath = "(//div[.='Successfully created!'])[2]")
+    public WebElement tag_success;
+
+    @FindBy(xpath = "(//div[.='Successfully updated!'])[4]")
+    public WebElement tag_updated;
+
+    @FindBy(xpath = "//input[@accept='image/*']")
+    public WebElement tag_img;
+
+    @FindBy(xpath = "(//div[.='Add Tag'])[2]//button")
     public WebElement tag_addTag;
+
+    @FindBy(xpath = "(//button[.='Update Tag'])")
+    public WebElement tag_updateTag;
 
     //Orders----------------------------------------------------------------
 
@@ -479,26 +799,43 @@ public class SellerPage {
     @FindBy(id = "//tbody//tr[2]//td[1]//span")
     public WebElement order_show;
 
-    @FindBy(xpath = "(//tbody//tr[2]//td[8]//a] ")
+    @FindBy(xpath = "//tbody//tr[2]//td[8]//a")
     public WebElement order_eye;
 
     @FindBy(xpath = "//tbody//tr[2]//td[2]")
     public WebElement order_tracking_number;
 
-    @FindBy(partialLinkText = "Order ID")
+    @FindBy(xpath = "(//h3)[1]")
     public WebElement order_id;
+
+    @FindBy(xpath = "//div[@class=' css-ackcql']")
+    public WebElement order_status_select;
 
     @FindBy(xpath = "//span[.='Change Status']")
     public WebElement order_Change_status;
 
+    @FindBy(xpath = "//button[.='Download Invoice']")
+    public WebElement order_download;
+
     @FindBy(xpath = "(//main//div)[7]//span[2]")
     public WebElement ordes_status;
+
+    @FindBy(xpath = "(//div[.='Successfully updated!'])[2]")
+    public WebElement order_success;
+
     //Create Order -----------------------------------------------------------
+
 
     @FindBy(id = "search")
     public WebElement c_order_search;
 
-    @FindBy(xpath = "path[data-name='Path 2462']")
+    @FindBy(xpath = "(//h3)[1]")
+    public WebElement c_head;
+
+    @FindBy(xpath = "(//*[@class= ' css-15aq8md'])[1]")
+    public WebElement c_filter_groups;
+
+    @FindBy(xpath = "//button[contains(text(),'Filter')]")
     public WebElement c_filter;
 
     @FindBy(xpath = "(//span[.='text-product-image'])[1]")
@@ -507,10 +844,30 @@ public class SellerPage {
     @FindBy(xpath = "(//span[.='Add'])[1]")
     public WebElement c_order_add;
 
-    @FindBy(xpath = "(//span[@class='flex pb-0.5']")
+    @FindBy(xpath = "(//div[.='Select...'])[5]")
+    public WebElement c_select;
+
+    @FindBy(xpath = "(//div[.='Phone'])//input")
+    public WebElement c_input;
+
+    @FindBy(xpath = "//button[.='Save']")
+    public WebElement c_save;
+
+
+    @FindBy(xpath = "(//button[.='Add'])[1]")
+    public WebElement c_add1;
+    @FindBy(xpath = "(//button[.='Add'])[2]")
+    public WebElement c_add2;
+    @FindBy(xpath = "(//button[.='Add'])[3]")
+    public WebElement c_add3;
+    @FindBy(xpath = "(//button[.='Add'])[4]")
+    public WebElement c_add4;
+
+
+    @FindBy(xpath = "//span[contains(text(),'Item')]")
     public WebElement c_order_sepet;
 
-    @FindBy(xpath = "(//span[.='Checkout']")
+    @FindBy(xpath = "//span[.='Checkout']//ancestor::button")
     public WebElement c_order_checkout;
 
     @FindBy(xpath = "//button[.='Update']")//index al
@@ -543,7 +900,7 @@ public class SellerPage {
     @FindBy(xpath = "(//span[.='+ Add Customer'])")
     public WebElement costumer_add_costumer;
 
-    @FindBy(xpath = "((//tr)[3]//td[4])")
+    @FindBy(xpath = "((//tr)[3]//td[4])//div")
     public WebElement costumer_permission;
 
     @FindBy(xpath = "((//tr)[3]//td[5])")
@@ -555,6 +912,9 @@ public class SellerPage {
     @FindBy(xpath = "((//tr)[3]//td[7]//button[1])")
     public WebElement costumer_act_per;
 
+    @FindBy(xpath = "(//tr)[3]//td[2]")
+    public WebElement shp_check;
+
     @FindBy(xpath = "((//tr)[3]//td[7]//button[2])")
     public WebElement costumer_act_wallet;
 
@@ -564,15 +924,29 @@ public class SellerPage {
     @FindBy(xpath = "(//button[.='Cancel'])")
     public WebElement costumer_cancel;
 
-    @FindBy(id = "(points)")
+    @FindBy(id = "points")
     public WebElement costumer_wallet_edit;
 
     @FindBy(xpath = "((//div[@class='w-1/2'])[2])")
     public WebElement costumer_red_btn;
 
+    @FindBy(xpath = "(//div[.='Successfully updated!'])[2]")
+    public WebElement costumer_updated;
+
+    @FindBy(xpath = "(//div[contains(text(),'Successfully')])")
+    public WebElement costumer_remove;
+
+    @FindBy(xpath = "//button[.='Create Customer']")
+    public WebElement costumer_last;
+
+    @FindBy(xpath = "(//tr[2])//td[2]")
+    public WebElement costumer_name;
+
+    @FindBy(id = "email")
+    public WebElement costumer_email;
+
     @FindAll({
             @FindBy(id = "name"),
-            @FindBy(id = "email"),
             @FindBy(id = "password"),
     })
     public List<WebElement> costumer_information;
@@ -580,8 +954,29 @@ public class SellerPage {
     @FindBy(id = "search")
     public WebElement coupons_search;
 
+    @FindBy(xpath = "(//table//tr[2])//td[3]")
+    public WebElement coupons_name;
+
+    @FindBy(xpath = "(//table//tr[2])//td[2]")
+    public WebElement TAX_name;
+
     @FindBy(xpath = "(//span[.='+ Add Coupon'])")
-    public WebElement couponsr_add_coupon;
+    public WebElement coupons_add_coupon;
+
+    @FindBy(xpath = "(//span[.='+ Add Tax'])")
+    public WebElement coupons_add_tax;
+
+    @FindBy(xpath = "(//span[.='+ Add Shipping'])")
+    public WebElement shp_add;
+
+    @FindBy(xpath = "//button[.='Add Shipping']")
+    public WebElement shp_add2;
+
+    @FindBy(xpath = "//button[@data-variant='normal']")
+    public WebElement coupons_add_coupon_last;
+
+    @FindBy(xpath = "(//button[.='Add Tax'])")
+    public WebElement tax_add_coupon_last;
 
     @FindBy(xpath = "((//tr)[3]//td[8]//button)")
     public WebElement coupons_cop;
@@ -595,8 +990,15 @@ public class SellerPage {
     @FindBy(xpath = "(//button[.='Delete'])")
     public WebElement coupons_delete;
 
+    @FindBy(xpath = "(//div[.='Successfully deleted!'])[4]")
+    public WebElement coupons_d_m;
+    @FindBy(xpath = "(//div[.='Successfully deleted!'])[3]")
+    public WebElement deleted_1;
+    @FindBy(xpath = "(//div[.='Successfully deleted!'])[2]")
+    public WebElement deleted_2;
 
-    @FindBy(xpath = "(//h4[.='Image']//following::section[1])")
+
+    @FindBy(xpath = "//input[@accept='image/*']")
     public WebElement coupons_img;
 
     @FindAll({
@@ -607,6 +1009,23 @@ public class SellerPage {
             @FindBy(xpath = "(//input[@type='text'])[3]"),
     })
     public List<WebElement> coupons_information;
+    @FindAll({
+            @FindBy(id = "name"),
+            @FindBy(id = "rate"),
+            @FindBy(id = "country"),
+            @FindBy(id = "city"),
+            @FindBy(id = "state"),
+            @FindBy(id = "zip"),
+
+    })
+    public List<WebElement> tax_information;
+    @FindAll({
+            @FindBy(id = "name"),
+            @FindBy(id = "amount"),
+
+
+    })
+    public List<WebElement> shp_information;
 
     @FindAll({
             @FindBy(xpath = "//input[@id='fixed']"),
@@ -615,27 +1034,49 @@ public class SellerPage {
     })
     public List<WebElement> coupons_type;
 
+    @FindAll({
+            @FindBy(xpath = "//label[@for='FIXED']"),
+            @FindBy(xpath = "//label[@for='PERCENTAGE']"),
+            @FindBy(xpath = "//label[@for='FREE']"),
+    })
+    public List<WebElement> shp_type;
+
+    @FindBy(xpath = "(//div[.='Successfully created!'])[2]")
+    public WebElement coupons_success;
+
+    @FindBy(xpath = "(//div[.='Successfully updated!'])[2]")
+    public WebElement tax_update;
+
     @FindBy(xpath = "(//button[.='Back'])")
     public WebElement coupons_back;
 
     @FindBy(xpath = "(//button[.='Update Coupon'])")
     public WebElement coupons_update_c;
 
+    @FindBy(xpath = "//button[.='Update Tax']")
+    public WebElement tax_update_c;
+
     //Questions---------------------------------------------------------------------------------
 
-    @FindBy(xpath = "(//table//tr[2]")
+    @FindBy(xpath = "//table//tr[2]")
     public WebElement question_show;
 
-    @FindBy(xpath = "(//table//tr[2]//td[7]//button[1])")
+    @FindBy(xpath = "(//tr)[3]//td[2]//p")
+    public WebElement question_check;
+
+    @FindBy(xpath = "//table//tr[2]//td[7]//button[1]")
     public WebElement question_cop;
 
-    @FindBy(xpath = "(//table//tr[2]//td[7]//button[2]")
+    @FindBy(xpath = "//table//tr[2]//td[7]//button[2]")
     public WebElement question_edit;
+
+    @FindBy(id = "answer")
+    public WebElement box;
 
     @FindBy(xpath = "(//button[.='Cancel'])")
     public WebElement question_cancel;
 
-    @FindBy(xpath = "(//button[.='Delete'])")
+    @FindBy(xpath = "//button[.='Delete']")
     public WebElement question_delete;
 
     @FindBy(id = "answer")
@@ -652,11 +1093,17 @@ public class SellerPage {
     @FindBy(xpath = "(//table//tr[2]//td[7]//button[1])")
     public WebElement reviews_cop;
 
-    @FindBy(xpath = "//table//tr[2]//td[4]")
+    @FindBy(xpath = "//table//tr[2]//td[4]//a")
     public WebElement reviews_Products;
     //reviewsProduct:after
-    @FindBy(xpath = "//h1]")
+    @FindBy(xpath = "//h1")
     public WebElement reviews_check_name;
+
+    @FindBy(xpath = "(//div//p)[3]")
+    public WebElement m_y;
+
+    @FindBy(xpath = "//table//tr[2]//td[2]//p")
+    public WebElement m_y2;
 
     @FindBy(xpath = "//table//tr[2]//td[2]")
     public WebElement reviews_costumer;
