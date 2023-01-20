@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class ContactTestleri extends TestBaseReports {
     @Test
-    public void concat() {
+    public void test01() {
         extentTest = extentReports.createTest("2. us 1. case");//repor için cagırdık
         PickBazarContactPage pickBazarContactPage = new PickBazarContactPage();
         //1    kullanıcı url ye gider

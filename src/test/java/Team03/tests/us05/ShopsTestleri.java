@@ -69,6 +69,11 @@ public class ShopsTestleri extends TestBaseReports {
 
   pickBazarShopsPage.place.click();
     Assert.assertTrue(pickBazarShopsPage.card.isDisplayed());
+    //faild  ödeme buttonu calısmıyor
+
+
+
+    //nxcvlşf
 
  /*   pickBazarShopsPage.alısVerisSecenekleri.get(2).click();
     for (int i = 0; i < pickBazarShopsPage.resimler.size(); i++) {
