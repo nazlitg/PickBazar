@@ -1,6 +1,7 @@
 package Team03.tests.us25;
 
 import Team03.utilities.Driver;
+import Team03.utilities.TestBaseReports;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -11,7 +12,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class case05 {
+public class case05 extends TestBaseReports {
     @Test(dataProvider = "keyData")
     public void tet05(String key){
         /*
@@ -51,7 +52,6 @@ public class case05 {
         picture.click();
 
         WebElement topArtur=Driver.getDriver().findElement(By.xpath("//h2[@class=\"mb-8 text-2xl font-semibold tracking-tight text-heading lg:text-3xl\"]"));
-
 
         JavascriptExecutor jse = (JavascriptExecutor) Driver.getDriver();
         jse.executeScript("arguments[0].scrollIntoView();" ,topArtur);
