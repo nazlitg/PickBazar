@@ -1,27 +1,33 @@
 package Team03.tests.us25;
 
 import Team03.utilities.Driver;
+import Team03.utilities.TestBaseReports;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
 import java.util.List;
 
-public class case03 {
+public class case03 extends TestBaseReports {
     @Test
     public void tet03(){
-     /*   1-Kullanıcı URL gider.
-        2-Kullanıcı "Grocery" tıklar
-        3-Kullanıcı açılan sekmede "Books" a tıklamalıdır
-        4-Yazarları görene kadar ekranı aşağıya kaydırır
-        5- "See All" a tıklar
-        6-bütün yazarların göründüğünü kontrol eder
-        7-driverı kapatır
+     /*
+     1-Kullanıcı URL gider.
+     2-Kullanıcı "Grocery" tıklar
+     3-Kullanıcı açılan sekmede "Books" a tıklamalıdır
+     4-Yazarları görene kadar ekranı aşağıya kaydırır
+     5- "See All" a tıklar
+     6-bütün yazarların göründüğünü kontrol eder
+     7-driverı kapatır
 
       */
         Driver.getDriver().get("https://shop-pickbazar-rest.vercel.app/");
+
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15));
 
         WebElement Grocery = Driver.getDriver().findElement(By.xpath(" //span[@class=\"whitespace-nowrap\"]"));
         Grocery.click();

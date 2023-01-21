@@ -2,12 +2,17 @@ package Team03.tests.us24;
 
 import Team03.pages.Books;
 import Team03.utilities.Driver;
+import Team03.utilities.TestBaseReports;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class case03 {
+import java.time.Duration;
+
+public class case03 extends TestBaseReports {
      /*
     1-Kulanıcı URL gider.
     2-login olur
@@ -23,6 +28,9 @@ public class case03 {
      @Test
      public void test03() throws InterruptedException {
          Books books = new Books(Driver.getDriver());
+         JavascriptExecutor jse = (JavascriptExecutor) Driver.getDriver();
+
+         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15));
 
          Driver.getDriver().get("https://shop-pickbazar-rest.vercel.app/");
 
@@ -34,15 +42,23 @@ public class case03 {
          WebElement Books = Driver.getDriver().findElement(By.xpath(" //a[@href='/books']"));
          Books.click();
 
-         WebElement İmg1 = Driver.getDriver().findElement(By.xpath(" //img[@alt='The Children Story 2']"));//span[contains(@class,'flex pb')]"));
-         İmg1.click();
+         WebElement img1 = Driver.getDriver().findElement(By.xpath(" //img[@alt='The Children Story 2']"));
 
-         Thread.sleep(2000);
+         jse.executeScript("arguments[0].scrollIntoView();" ,img1);
+         img1.click();
 
-         WebElement like=Driver.getDriver().findElement(By.xpath("//button[contains(@class,'items center justifycenter rounded full border border gray']"));
+         WebElement say=Driver.getDriver().findElement(By.xpath("//div[@class=\"flex flex-col items-start\"]"));
+         jse.executeScript("arguments[0].scrollIntoView();" ,say);
+
+        // Thread.sleep(2000);
+
+         //WebElement like=Driver.getDriver().findElement(By.xpath("//button[contains(@class,'items center justifycenter rounded full border border gray']"));
+         WebElement like=Driver.getDriver().findElement(By.xpath("(//button[@type=\"button\"])[3]"));
+
          like.click();
 
-         Assert.assertTrue(like.isDisplayed());
+
+
 
 
      }

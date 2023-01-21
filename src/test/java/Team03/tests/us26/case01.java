@@ -1,12 +1,13 @@
 package Team03.tests.us26;
 
 import Team03.utilities.Driver;
+import Team03.utilities.TestBaseReports;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
-public class case01 {
+public class case01  extends TestBaseReports {
     /*
   1-Kullanıcı URL gider.
   2-Kullanıcı "Grocery" tıklar

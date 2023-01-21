@@ -1,13 +1,17 @@
 package Team03.tests.us25;
 
 import Team03.utilities.Driver;
+import Team03.utilities.TestBaseReports;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class case02 {
+import java.time.Duration;
+
+public class case02  extends TestBaseReports {
     /*
     1-Kullanıcı URL gider.
     2-Kullanıcı "Grocery" tıklar
@@ -22,6 +26,8 @@ public class case02 {
     @Test
     public void test02() throws InterruptedException {
         Driver.getDriver().get("https://shop-pickbazar-rest.vercel.app/");
+
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15));
 
         WebElement Grocery = Driver.getDriver().findElement(By.xpath(" //span[@class=\"whitespace-nowrap\"]"));
         Grocery.click();

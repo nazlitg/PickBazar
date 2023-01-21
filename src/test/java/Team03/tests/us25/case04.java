@@ -1,6 +1,7 @@
 package Team03.tests.us25;
 
 import Team03.utilities.Driver;
+import Team03.utilities.TestBaseReports;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -8,7 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class case04 {
+public class case04 extends TestBaseReports {
     @Test(dataProvider = "keyData")
     public void tet04(String key){
         /*

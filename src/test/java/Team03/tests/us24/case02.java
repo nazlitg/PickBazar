@@ -2,6 +2,7 @@ package Team03.tests.us24;
 
 import Team03.pages.Books;
 import Team03.utilities.Driver;
+import Team03.utilities.TestBaseReports;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,7 +12,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class case02 {
+public class case02 extends TestBaseReports {
     /*
         1-Kulanıcı URL gider.
         2-login olur
@@ -35,6 +36,8 @@ public class case02 {
         Driver.getDriver().get("https://shop-pickbazar-rest.vercel.app/");
 
         books.Login();
+
+        Thread.sleep(2000);
 
         wait.until(ExpectedConditions.visibilityOf(Driver.getDriver().findElement(By.xpath("//button[@class=\"flex h-11 shrink-0 items-center text-sm font-semibold text-heading focus:outline-none md:text-base xl:px-4 rounded border-border-200 bg-light xl:min-w-150 xl:border xl:text-accent\"]"))));
 
